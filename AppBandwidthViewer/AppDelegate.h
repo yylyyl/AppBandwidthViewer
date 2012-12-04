@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BandWidthCounter.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    BandWidthCounter *myCounter;
+}
 
-@property (assign) IBOutlet NSWindow *window;
+//@property (assign) IBOutlet NSWindow *window;
 
 @end

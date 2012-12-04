@@ -13,6 +13,13 @@
 		85E1AD12166D974500F72D7F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 85E1AD10166D974500F72D7F /* Credits.rtf */; };
 		85E1AD15166D974500F72D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E1AD14166D974500F72D7F /* AppDelegate.m */; };
 		85E1AD18166D974600F72D7F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E1AD16166D974600F72D7F /* MainMenu.xib */; };
+		85E1AD20166D985A00F72D7F /* lsof.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E1AD1F166D985A00F72D7F /* lsof.m */; };
+		85E1AD23166D9E2A00F72D7F /* iftop.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E1AD22166D9E2A00F72D7F /* iftop.m */; };
+		85E1ADFA166DA0C600F72D7F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E1ADF9166DA0C600F72D7F /* SystemConfiguration.framework */; };
+		85E1AE02166DAAF700F72D7F /* BandWidthCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E1AE01166DAAF700F72D7F /* BandWidthCounter.m */; };
+		85E1AE0D166DD71500F72D7F /* MyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E1AE0C166DD71500F72D7F /* MyMenu.m */; };
+		85E1AE13166DD8A300F72D7F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E1AE12166DD8A300F72D7F /* icon.png */; };
+		85E1AE1D166E032E00F72D7F /* Terminal.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E1AE1C166E032E00F72D7F /* Terminal.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +36,17 @@
 		85E1AD13166D974500F72D7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		85E1AD14166D974500F72D7F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		85E1AD17166D974600F72D7F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		85E1AD1E166D985A00F72D7F /* lsof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lsof.h; sourceTree = "<group>"; };
+		85E1AD1F166D985A00F72D7F /* lsof.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lsof.m; sourceTree = "<group>"; };
+		85E1AD21166D9E2A00F72D7F /* iftop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iftop.h; sourceTree = "<group>"; };
+		85E1AD22166D9E2A00F72D7F /* iftop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iftop.m; sourceTree = "<group>"; };
+		85E1ADF9166DA0C600F72D7F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		85E1AE00166DAAF700F72D7F /* BandWidthCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandWidthCounter.h; sourceTree = "<group>"; };
+		85E1AE01166DAAF700F72D7F /* BandWidthCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandWidthCounter.m; sourceTree = "<group>"; };
+		85E1AE0B166DD71500F72D7F /* MyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMenu.h; path = ../MyMenu.h; sourceTree = "<group>"; };
+		85E1AE0C166DD71500F72D7F /* MyMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMenu.m; path = ../MyMenu.m; sourceTree = "<group>"; };
+		85E1AE12166DD8A300F72D7F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		85E1AE1C166E032E00F72D7F /* Terminal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Terminal.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E1ADFA166DA0C600F72D7F /* SystemConfiguration.framework in Frameworks */,
 				85E1AD02166D974500F72D7F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +82,7 @@
 		85E1AD00166D974500F72D7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85E1ADF9166DA0C600F72D7F /* SystemConfiguration.framework */,
 				85E1AD01166D974500F72D7F /* Cocoa.framework */,
 				85E1AD03166D974500F72D7F /* Other Frameworks */,
 			);
@@ -84,7 +104,15 @@
 			children = (
 				85E1AD13166D974500F72D7F /* AppDelegate.h */,
 				85E1AD14166D974500F72D7F /* AppDelegate.m */,
+				85E1AE0B166DD71500F72D7F /* MyMenu.h */,
+				85E1AE0C166DD71500F72D7F /* MyMenu.m */,
 				85E1AD16166D974600F72D7F /* MainMenu.xib */,
+				85E1AE00166DAAF700F72D7F /* BandWidthCounter.h */,
+				85E1AE01166DAAF700F72D7F /* BandWidthCounter.m */,
+				85E1AD1E166D985A00F72D7F /* lsof.h */,
+				85E1AD1F166D985A00F72D7F /* lsof.m */,
+				85E1AD21166D9E2A00F72D7F /* iftop.h */,
+				85E1AD22166D9E2A00F72D7F /* iftop.m */,
 				85E1AD08166D974500F72D7F /* Supporting Files */,
 			);
 			path = AppBandwidthViewer;
@@ -93,6 +121,8 @@
 		85E1AD08166D974500F72D7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				85E1AE1C166E032E00F72D7F /* Terminal.png */,
+				85E1AE12166DD8A300F72D7F /* icon.png */,
 				85E1AD09166D974500F72D7F /* AppBandwidthViewer-Info.plist */,
 				85E1AD0A166D974500F72D7F /* InfoPlist.strings */,
 				85E1AD0D166D974500F72D7F /* main.m */,
@@ -156,6 +186,8 @@
 				85E1AD0C166D974500F72D7F /* InfoPlist.strings in Resources */,
 				85E1AD12166D974500F72D7F /* Credits.rtf in Resources */,
 				85E1AD18166D974600F72D7F /* MainMenu.xib in Resources */,
+				85E1AE13166DD8A300F72D7F /* icon.png in Resources */,
+				85E1AE1D166E032E00F72D7F /* Terminal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +200,10 @@
 			files = (
 				85E1AD0E166D974500F72D7F /* main.m in Sources */,
 				85E1AD15166D974500F72D7F /* AppDelegate.m in Sources */,
+				85E1AD20166D985A00F72D7F /* lsof.m in Sources */,
+				85E1AD23166D9E2A00F72D7F /* iftop.m in Sources */,
+				85E1AE02166DAAF700F72D7F /* BandWidthCounter.m in Sources */,
+				85E1AE0D166DD71500F72D7F /* MyMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

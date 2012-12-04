@@ -13,6 +13,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    myCounter = [BandWidthCounter getMe];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [myCounter exit];
 }
 
 @end
