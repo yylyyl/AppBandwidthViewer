@@ -12,9 +12,10 @@
     NSTask *task;
     bool running;
     NSMutableArray *connections;
+    NSString *oldIf;
 }
 
 - (id)init;
-- (NSMutableArray *)getConnections;
+- (NSMutableArray *)getConnections:(bool)refresh;
 - (void)exit;
 @end

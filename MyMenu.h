@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BandWidthCounter.h"
+#import <sys/proc_info.h>
 
 @interface MyMenu : NSObject <NSMenuDelegate> {
     IBOutlet NSMenu *statusMenu;
@@ -20,9 +21,12 @@
     NSImage *noImage;
     BandWidthCounter *myCounter;
     bool updated;
+    NSTimer *timer;
+    bool more;
+    bool opened;
 }
 
-@property (weak) IBOutlet NSMenuItem *item_more;
+@property (weak) IBOutlet NSMenu *more_menu;
 
 - (IBAction)itemClicked:(NSMenuItem *)sender;
 @end

@@ -19,4 +19,5 @@
 + (id)getMe;
 - (NSMutableDictionary *)getList;
 - (void)exit;
+- (NSString *)getSpeed;
 @end

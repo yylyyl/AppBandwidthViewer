@@ -35,7 +35,7 @@ static BandWidthCounter *globalSelf;
 {
     [apps removeAllObjects];
     NSMutableArray *c_lsof = [myLsof getConnections];
-    NSMutableArray *c_iftop = [myIftop getConnections];
+    NSMutableArray *c_iftop = [myIftop getConnections:false];
     
     for (NSArray *line in c_lsof)
     {
@@ -59,19 +59,45 @@ static BandWidthCounter *globalSelf;
             NSString *iftop_down = [iftop_line objectAtIndex:3];
             if ([from isEqualToString:iftop_from] && [to isEqualToString:iftop_to])
             {
-                NSString *newup = [NSString stringWithFormat:@"%.1f", [(NSString *)[lineInApps objectForKey:@"up"] floatValue] + [iftop_up floatValue]];
-                NSString *newdown = [NSString stringWithFormat:@"%.1f", [(NSString *)[lineInApps objectForKey:@"down"] floatValue] + [iftop_down floatValue]];
+                NSString *newup = [NSString stringWithFormat:@"%.1f", [[lineInApps objectForKey:@"up"] floatValue] + [iftop_up floatValue]];
+                NSString *newdown = [NSString stringWithFormat:@"%.1f", [[lineInApps objectForKey:@"down"] floatValue] + [iftop_down floatValue]];
                 [lineInApps setObject:newup forKey:@"up"];
                 [lineInApps setObject:newdown forKey:@"down"];
+                break;
             }
         }
+        
     }
-    //NSLog(@"%@", apps);
+    
     return apps;
 }
 
 - (void)exit
 {
     [myIftop exit];
+}
+
+- (NSString *)getSpeed
+{
+    NSMutableArray *c_iftop = [myIftop getConnections:true];
+    float up = 0, down = 0;
+    for (NSArray *iftop_line in c_iftop)
+    {
+        up += [[iftop_line objectAtIndex:2] floatValue];
+        down += [[iftop_line objectAtIndex:3] floatValue];
+    }
+    
+    NSString *upstr, *downstr;
+    if (up>1024)
+        upstr = [NSString stringWithFormat:@"%.1fMB/s", up/1024];
+    else
+        upstr = [NSString stringWithFormat:@"%.1fKB/s", up];
+    
+    if (down>1024)
+        downstr = [NSString stringWithFormat:@"%.1fMB/s", down/1024];
+    else
+        downstr = [NSString stringWithFormat:@"%.1fKB/s", down];
+    
+    return [NSString stringWithFormat:@"%@\n%@", upstr, downstr];
 }
 @end

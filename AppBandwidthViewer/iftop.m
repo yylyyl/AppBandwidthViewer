@@ -16,7 +16,30 @@
     self = [super init];
     connections = [[NSMutableArray alloc] init];
     running = false;
+    [self start];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval: 2
+                                             target: self
+                                           selector: @selector(checkIfInterfaceChanged)
+                                           userInfo: nil
+                                            repeats: YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
     return self;
+}
+
+- (void)checkIfInterfaceChanged
+{
+    SCDynamicStoreRef storeRef = SCDynamicStoreCreate(NULL, (CFStringRef)@"FindCurrentInterfaceIpMac", NULL, NULL);
+    CFPropertyListRef global = SCDynamicStoreCopyValue (storeRef,CFSTR("State:/Network/Global/IPv4"));
+    NSString *primaryInterface = [(__bridge NSDictionary *)global valueForKey:@"PrimaryInterface"];
+    CFRelease(storeRef);
+    
+    if (![oldIf isEqualToString:primaryInterface])
+    {
+        [task terminate];
+        [self start];
+    }
 }
 
 - (void)start
@@ -26,14 +49,17 @@
     NSString *primaryInterface = [(__bridge NSDictionary *)global valueForKey:@"PrimaryInterface"];
     CFRelease(storeRef);
     
+    oldIf = [NSString stringWithString:primaryInterface];
+    
     NSString *appPath = [[NSBundle mainBundle] bundlePath];
-    //NSString *path = [NSString stringWithFormat:@"%@/Contents/iftop/iftop", appPath];
-    NSString *path = @"/Users/yangyiliang/Desktop/iftop/iftop";
+    NSString *path = [NSString stringWithFormat:@"%@/Contents/iftop/iftop", appPath];
+    //NSString *path = @"/Users/yangyiliang/Desktop/iftop/iftop";
     NSArray *args = @[@"-i", primaryInterface, @"-n", @"-N", @"-P"];
     task = [[NSTask alloc] init];
     [task setLaunchPath:path];
     [task setArguments:args];
-    [task setEnvironment:[NSDictionary dictionaryWithObject:@"xterm-256color" forKey:@"TERM"]];
+    //[task setStandardOutput:[NSFileHandle fileHandleForWritingAtPath:@"/dev/null"]];
+    //[task setEnvironment:[NSDictionary dictionaryWithObject:@"xterm" forKey:@"TERM"]];
     running = true;
     task.terminationHandler = ^(NSTask *task) {
         running = false;
@@ -42,13 +68,19 @@
     [task launch];
 }
 
-- (NSMutableArray *)getConnections
+- (NSMutableArray *)getConnections:(bool)refresh
 {
+    //[pipe fileHandleForReading];
     if (!running)
     {
         [self start];
         return connections;
     }
+    if (!refresh)
+    {
+        return connections;
+    }
+
     NSString *str = [NSString stringWithContentsOfFile:@"/tmp/iftop.txt" encoding:NSUTF8StringEncoding error:nil];
     if (str==nil || [str isEqualToString:@""])
     {
@@ -76,7 +108,7 @@
 
 - (void)exit
 {
-    //NSLog(@"%@", @"kill iftop");
+    NSLog(@"%@", @"kill iftop");
     [task terminate];
 }
 @end
