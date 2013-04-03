@@ -12,6 +12,7 @@
     NSTask *task;
     bool running;
     NSMutableArray *connections;
+    NSPipe *error;
     NSString *oldIf;
 }
 

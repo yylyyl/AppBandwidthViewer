@@ -41,7 +41,7 @@
 					<object class="NSMenuItem" id="272411457">
 						<reference key="NSMenu" ref="923439758"/>
 						<bool key="NSIsDisabled">YES</bool>
-						<string key="NSTitle">      App                            ⬆           ⬇</string>
+						<string key="NSTitle">      App                            ⬆           ⬇     </string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="560544527">
@@ -114,7 +114,7 @@
 								<object class="NSMenuItem" id="206425090">
 									<reference key="NSMenu" ref="409905260"/>
 									<bool key="NSIsDisabled">YES</bool>
-									<string key="NSTitle">      App                            ⬆           ⬇</string>
+									<string key="NSTitle">      App                            ⬆           ⬇     </string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="560544527"/>

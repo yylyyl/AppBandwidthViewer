@@ -38,7 +38,7 @@
     if (![oldIf isEqualToString:primaryInterface])
     {
         [task terminate];
-        [self start];
+        //[self start];
     }
 }
 
@@ -49,22 +49,41 @@
     NSString *primaryInterface = [(__bridge NSDictionary *)global valueForKey:@"PrimaryInterface"];
     CFRelease(storeRef);
     
+    if (!primaryInterface)
+    {
+        return;
+    }
+    
+    NSLog(@"Interface: %@", primaryInterface);
+    
     oldIf = [NSString stringWithString:primaryInterface];
     
     NSString *appPath = [[NSBundle mainBundle] bundlePath];
-    NSString *path = [NSString stringWithFormat:@"%@/Contents/iftop/iftop", appPath];
+    NSString *path = [NSString stringWithFormat:@"%@/Contents/iftop/yyliftop", appPath];
     //NSString *path = @"/Users/yangyiliang/Desktop/iftop/iftop";
     NSArray *args = @[@"-i", primaryInterface, @"-n", @"-N", @"-P"];
     task = [[NSTask alloc] init];
     [task setLaunchPath:path];
     [task setArguments:args];
-    //[task setStandardOutput:[NSFileHandle fileHandleForWritingAtPath:@"/dev/null"]];
-    //[task setEnvironment:[NSDictionary dictionaryWithObject:@"xterm" forKey:@"TERM"]];
+    [task setStandardOutput:[NSFileHandle fileHandleForWritingAtPath:@"/dev/null"]];
+    
+    error = [[NSPipe alloc] init];
+    [task setStandardError:error];
+    
+    [task setEnvironment:[NSDictionary dictionaryWithObject:@"xterm" forKey:@"TERM"]];
     running = true;
     task.terminationHandler = ^(NSTask *task) {
+        NSLog(@"iftop exit");
         running = false;
+        
+        NSData *data = [[error fileHandleForReading] readDataToEndOfFile];
+        NSString *errStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"Exit:\n%@", errStr);
+        
     };
     
+    system("/usr/bin/killall yyliftop");
     [task launch];
 }
 
@@ -73,6 +92,7 @@
     //[pipe fileHandleForReading];
     if (!running)
     {
+        NSLog(@"Force start iftop");
         [self start];
         return connections;
     }
